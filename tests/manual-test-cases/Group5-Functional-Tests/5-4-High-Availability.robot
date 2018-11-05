@@ -16,7 +16,7 @@
 Documentation  Test 5-4 - High Availability
 Resource  ../../resources/Util.robot
 Suite Setup  Nimbus Suite Setup  High Availability Setup
-Suite Teardown  Nimbus Cleanup  ${list}
+#Suite Teardown  Nimbus Cleanup  ${list}
 Test Teardown  Run Keyword If Test Failed  Gather vSphere Logs
 
 *** Variables ***
@@ -242,5 +242,5 @@ Test
     \     Log To Console  ${output}
     \     Should Be Equal As Integers  ${rc}  0
 
-Run Regression Tests
-    Run Regression Test With More Log Information
+#Run Regression Tests
+#    Run Regression Test With More Log Information
