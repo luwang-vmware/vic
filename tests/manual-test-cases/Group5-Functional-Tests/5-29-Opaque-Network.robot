@@ -153,7 +153,7 @@ Install VIC Appliance and Run Selenium Grid Test
 
 *** Test Cases ***
 Basic VIC Tests with NSXT Topology
-    [Timeout]  60 minutes
+    [Timeout]  90 minutes
     Log To Console  \nStarting test...
     ${bridge_ls_name}=  Evaluate  'vic-bridge-ls'
     ${result}=  Create Nsxt Logical Switch  %{NSXT_MANAGER_URI}  ${nsxt_username}  ${nsxt_password}  ${bridge_ls_name}
@@ -182,7 +182,7 @@ Basic VIC Tests with NSXT Topology
     Run Keyword And Continue On Failure  Cleanup VIC Appliance On Test Server
 
 Selenium Grid Test in NSXT
-    [Timeout]  90 minutes
+    [Timeout]  180 minutes
     Log To Console  Starting Selenium Grid test in NSXT...
     ${bridge_ls_name_1}=  Evaluate  'vic-selenium-bridge-ls-1'
  
@@ -211,16 +211,11 @@ Selenium Grid Test in NSXT
     Set Environment Variable  BRIDGE_NETWORK  ${bridge_ls_name_2}
     Install VIC Appliance and Run Selenium Grid Test  Grid2  cleanup=${false}
   
-    ${status}=  Get State Of Github Issue  8435
-    Run Keyword If  '${status}' == 'closed'  Fail this case now that Issue #8435 has been resolved
-    
-#    uncoment the followings when #8435 is resolved
-#    Sleep  300
-#    Run Keyword And Continue On Failure  Cleanup VIC Appliance On Test Server
-#
-#    Set Environment Variable  VCH-NAME  ${vch_name_1}
-#    Set Environment Variable  BRIDGE_NETWORK  ${bridge_ls_name_1}
-#    Set Environment Variable  VCH-PARAMS  ${vch_params_1}
-#    Set Environment Variable  VIC-ADMIN  ${vic_admin_1}
-#
-#    Run Keyword And Continue On Failure  Cleanup VIC Appliance On Test Server
+    Run Keyword And Continue On Failure  Cleanup VIC Appliance On Test Server
+
+    Set Environment Variable  VCH-NAME  ${vch_name_1}
+    Set Environment Variable  BRIDGE_NETWORK  ${bridge_ls_name_1}
+    Set Environment Variable  VCH-PARAMS  ${vch_params_1}
+    Set Environment Variable  VIC-ADMIN  ${vic_admin_1}
+
+    Run Keyword And Continue On Failure  Cleanup VIC Appliance On Test Server
